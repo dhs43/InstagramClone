@@ -161,4 +161,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void Logout(View view) {
+        ParseUser.logOut();
+        Toast.makeText(MainActivity.this, "Logged out", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(this, SignupActivity.class);
+        startActivity(i);
+        finish();
+    }
 }
