@@ -7,10 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,10 +37,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "MainActivity";
+
     private EditText etDescription;
     private Button btnTakePhoto;
     private ImageView ivImage;
     private Button btnSubmit;
+    private BottomNavigationView bottomNavigationView;
 
     //Camera
     public final String APP_TAG = "MyCustomApp";
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
         ivImage = findViewById(R.id.ivImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 savePost(description, user, photoFile);
+            }
+        });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                return false;
             }
         });
     }
