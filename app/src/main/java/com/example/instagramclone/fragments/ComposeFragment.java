@@ -3,6 +3,8 @@ package com.example.instagramclone.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -101,8 +103,6 @@ public class ComposeFragment extends Fragment {
         // Create a File reference to access to future access
         photoFile = getPhotoFileUri(photoFileName);
 
-        photoFile = resizePhoto(photoFile);
-
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
@@ -123,7 +123,11 @@ public class ComposeFragment extends Fragment {
             if (resultCode == RESULT_OK) {
                 // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
+                try {
+                    photoFile = resizePhoto(photoFile.getAbsoluteFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 // Load the taken image into a preview
                 ivImage.setImageBitmap(takenImage);
             } else { // Result was a failure

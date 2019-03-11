@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.instagramclone.Post;
 import com.example.instagramclone.PostsAdapter;
@@ -25,8 +26,9 @@ public class PostsFragment extends Fragment {
 
     public static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
-    private PostsAdapter adapter;
-    private List<Post> mPosts;
+    protected PostsAdapter adapter;
+    protected List<Post> mPosts;
+    protected Button btnLogout;
 
     @Nullable
     @Override
@@ -37,6 +39,9 @@ public class PostsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnLogout = view.findViewById(R.id.btnLogout);
+
         rvPosts = view.findViewById(R.id.rvPosts);
 
         // create the adapter
@@ -52,8 +57,10 @@ public class PostsFragment extends Fragment {
 
 
 
-    private void queryPosts() {
+    protected void queryPosts() {
         ParseQuery<Post> postQuery = new ParseQuery<Post>(Post.class);
+        postQuery.setLimit(20);
+        postQuery.addDescendingOrder(Post.KEY_CREATED_AT);
         postQuery.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
