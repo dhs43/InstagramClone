@@ -16,5 +16,6 @@
         android:id="@+id/action_profile"
         android:icon="@drawable/instagram_user_outline_24"
         android:title="Profile"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
 </menu>
