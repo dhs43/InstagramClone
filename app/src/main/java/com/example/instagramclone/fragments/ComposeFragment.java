@@ -146,7 +146,7 @@ public class ComposeFragment extends Fragment {
         // Configure byte output stream
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         // Compress the image further
-        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
         // Create a new file for the resized bitmap (`getPhotoFileUri` defined above)
         File resizedFile = getPhotoFileUri(photoFileName + "_resized");
         resizedFile.createNewFile();

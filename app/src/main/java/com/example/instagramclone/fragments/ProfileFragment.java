@@ -1,6 +1,9 @@
 package com.example.instagramclone.fragments;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +23,22 @@ import java.util.List;
 import static android.view.View.VISIBLE;
 
 public class ProfileFragment extends PostsFragment {
+
+    Button btnLogout;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btnLogout = view.findViewById(R.id.btnLogout);
+        btnLogout.setVisibility(VISIBLE);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout();
+            }
+        });
+    }
 
     @Override
     protected void queryPosts() {
@@ -45,10 +64,10 @@ public class ProfileFragment extends PostsFragment {
                 }
             }
         });
-        btnLogout.setVisibility(VISIBLE);
+        swipeLayout.setRefreshing(false);
     }
 
-    public void Logout(View view) {
+    public void Logout() {
         ParseUser.logOut();
         Toast.makeText(getContext(), "Logged out", Toast.LENGTH_LONG).show();
         Intent i = new Intent(getContext(), SignupActivity.class);
