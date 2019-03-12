@@ -3,6 +3,7 @@ package com.example.instagramclone.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -18,8 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -48,7 +52,7 @@ public class ComposeFragment extends Fragment {
     private final String TAG = "ComposeFragment";
 
     private EditText etDescription;
-    private Button btnTakePhoto;
+    private ImageButton btnTakePhoto;
     private ImageView ivImage;
     private Button btnSubmit;
     //Camera
@@ -66,6 +70,8 @@ public class ComposeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         etDescription = view.findViewById(R.id.etDescription);
         btnTakePhoto = view.findViewById(R.id.btnTakePhoto);
         ivImage = view.findViewById(R.id.ivImage);
@@ -115,6 +121,7 @@ public class ComposeFragment extends Fragment {
             // Start the image capture intent to take photo
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
+        ivImage.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override

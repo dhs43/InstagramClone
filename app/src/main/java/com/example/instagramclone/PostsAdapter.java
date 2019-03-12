@@ -72,7 +72,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         .load(secureUrl)
                         .into(ivPostImage);
             }
-            tvDescription.setText(post.getDescription());
+            tvDescription.setText(new StringBuilder().append(post.getHandle(post.getUser())).append(": ").append(post.getDescription()));
         }
     }
 }

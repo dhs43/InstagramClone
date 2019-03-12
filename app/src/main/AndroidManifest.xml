@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewAccountActivity"></activity>
+        <activity android:name=".NewAccountActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
 

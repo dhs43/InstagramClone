@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ public class NewAccountActivity extends AppCompatActivity {
 
     private static Context context;
     private EditText etUsername;
+    private EditText etHandle;
     private EditText etPassword;
     private Button btnSignUp;
     private EditText etEmail;
@@ -28,10 +30,13 @@ public class NewAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
 
         //declare context
         NewAccountActivity.context = getApplicationContext();
         etUsername = findViewById(R.id.etUsername);
+        etHandle = findViewById(R.id.etHandle);
         etPassword = findViewById(R.id.etPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
         etEmail = findViewById(R.id.etEmail);
@@ -41,18 +46,20 @@ public class NewAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username = etUsername.getText().toString();
+                String handle = etHandle.getText().toString();
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
-                CreateAccount(username, email, password);
+                CreateAccount(username, handle, email, password);
             }
         });
     }
 
-    private void CreateAccount(String username, String email, String password) {
+    private void CreateAccount(String username, String handle, String email, String password) {
         // Create the ParseUser
         ParseUser user = new ParseUser();
         // Set core properties
         user.setUsername(username);
+        user.put("handle", handle);
         user.setEmail(email);
         user.setPassword(password);
         // Invoke signUpInBackground

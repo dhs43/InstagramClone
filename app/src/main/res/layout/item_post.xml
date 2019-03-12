@@ -17,7 +17,7 @@
     <ImageView
         android:id="@+id/ivPostImage"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
@@ -27,6 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="16dp"
-        android:text="TextView"
-        tools:text="This here is a description." />
+        tools:text="This here is a description."
+        android:textColor="#000"/>
 </LinearLayout>

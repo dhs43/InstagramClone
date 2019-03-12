@@ -17,13 +17,26 @@
         android:inputType="text"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="175dp"/>
+        android:layout_marginTop="150dp"/>
+
+    <EditText
+        android:id="@+id/etHandle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/etUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        android:ems="10"
+        android:hint="@string/handle"
+        android:inputType="text"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"/>
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/etUsername"
+        app:layout_constraintTop_toBottomOf="@id/etHandle"
         app:layout_constraintStart_toStartOf="parent"
         android:ems="10"
         android:hint="@string/email"
